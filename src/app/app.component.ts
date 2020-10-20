@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app0';
+  title = 'app012zz';
+  heading = 'Lema 11';
+
+  cambioTemperaturaEnTeruel(): void {
+    console.log(' Cambio de temperatura en Teruel');
+  }
+  cambioTemperaturaEnAlicante(): void {
+    console.log(' Cambio de temperatura en Alicante');
+  }
+
 }
