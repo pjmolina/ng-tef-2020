@@ -4,12 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { WeatherComponent } from './weather/weather.component';
-import { LoggerDummyService, LoggerService } from './services/logger.service';
+import { MinusculasPipe } from './pipes/minusculas.pipe';
+import { CurrencyPipe } from './pipes/currency.pipe';
+import { SearchByPipe } from './pipes/search-by.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+    MinusculasPipe,
+    CurrencyPipe,
+    SearchByPipe
   ],
   imports: [
     BrowserModule,

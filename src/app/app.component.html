@@ -2,38 +2,26 @@
 
 <h2>{{ heading }}</h2>
 
+<p>Importe: {{ dinero | currency:'EUR' }}  </p>
 <div>
   Hola
   <p>Esto es un parrafo de ejemplo</p>
 </div>
 
 <div>
-  <label for="ciudad">Ciudad:</label>
-  <input id="ciudad" type="text" [(ngModel)]="ciudad1" />
+  <label for="search">Filtro:</label>
+  <input id="search" type="text" [(ngModel)]="searchText" placeholder="escribe para filtrar" />
 </div>
 
-<div>
-  <label for="ciudad2">Ciudad 2:</label>
-  <input id="ciudad2" type="text" [(ngModel)]="ciudad1" />
-</div>
 
-<div>
-  <label for="ciudad3">Ciudad 3:</label>
-  <input id="ciudad3" type="text" [(ngModel)]="ciudad1" />
-</div>
-
-<app-weather
-  [city]="ciudad1"
-  temperature="-12"
+<app-weather *ngFor="let cityInfo of data | searchBy:searchText"
+  [city]="cityInfo.city"
+  [temperature]="cityInfo.temperature"
   (temperatureChange)="cambioTemperatura($event)"
 >
 </app-weather>
-<app-weather
-  city="Alicante"
-  temperature="24"
-  (temperatureChange)="cambioTemperatura($event)"
->
-</app-weather>
+
+
 
 <ul>
   <li *ngFor="let msg of log">{{ msg }}</li>
