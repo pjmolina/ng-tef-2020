@@ -9,15 +9,35 @@
   </p>
 </div>
 
+<div>
+  <label for="ciudad">Ciudad:</label>
+  <input id="ciudad" type="text" [(ngModel)]="ciudad1">
+</div>
+
+<div>
+  <label for="ciudad2">Ciudad 2:</label>
+  <input id="ciudad2" type="text" [(ngModel)]="ciudad1">
+</div>
+
+
+<div>
+  <label for="ciudad3">Ciudad 3:</label>
+  <input id="ciudad3" type="text" [(ngModel)]="ciudad1">
+</div>
+
 <app-weather
-  city="Teruel"
+  [city]="ciudad1"
   temperature="-12"
-  (temperatureChange)="cambioTemperaturaEnTeruel()"
+  (temperatureChange)="cambioTemperatura($event)"
   >
 </app-weather>
 <app-weather
   city="Alicante"
   temperature="24"
-  (temperatureChange)="cambioTemperaturaEnAlicante()"
+  (temperatureChange)="cambioTemperatura($event)"
   >
 </app-weather>
+
+<ul>
+  <li *ngFor="let msg of log">{{ msg }}</li>
+</ul>
