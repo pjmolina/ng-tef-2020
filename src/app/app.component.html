@@ -4,38 +4,35 @@
 
 <div>
   Hola
-  <p>
-    Esto es un parrafo de ejemplo
-  </p>
+  <p>Esto es un parrafo de ejemplo</p>
 </div>
 
 <div>
   <label for="ciudad">Ciudad:</label>
-  <input id="ciudad" type="text" [(ngModel)]="ciudad1">
+  <input id="ciudad" type="text" [(ngModel)]="ciudad1" />
 </div>
 
 <div>
   <label for="ciudad2">Ciudad 2:</label>
-  <input id="ciudad2" type="text" [(ngModel)]="ciudad1">
+  <input id="ciudad2" type="text" [(ngModel)]="ciudad1" />
 </div>
-
 
 <div>
   <label for="ciudad3">Ciudad 3:</label>
-  <input id="ciudad3" type="text" [(ngModel)]="ciudad1">
+  <input id="ciudad3" type="text" [(ngModel)]="ciudad1" />
 </div>
 
 <app-weather
   [city]="ciudad1"
   temperature="-12"
   (temperatureChange)="cambioTemperatura($event)"
-  >
+>
 </app-weather>
 <app-weather
   city="Alicante"
   temperature="24"
   (temperatureChange)="cambioTemperatura($event)"
-  >
+>
 </app-weather>
 
 <ul>
