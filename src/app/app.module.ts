@@ -7,6 +7,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { MinusculasPipe } from './pipes/minusculas.pipe';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { SearchByPipe } from './pipes/search-by.pipe';
+import { MyHighlightDirective } from './directives/my-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SearchByPipe } from './pipes/search-by.pipe';
     WeatherComponent,
     MinusculasPipe,
     CurrencyPipe,
-    SearchByPipe
+    SearchByPipe,
+    MyHighlightDirective
   ],
   imports: [
     BrowserModule,
