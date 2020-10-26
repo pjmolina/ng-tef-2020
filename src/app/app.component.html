@@ -14,7 +14,7 @@
 </div>
 
 
-<app-weather *ngFor="let cityInfo of data | searchBy:searchText"
+<app-weather *ngFor="let cityInfo of data | searchBy:searchText:'city'"
   [city]="cityInfo.city"
   [temperature]="cityInfo.temperature"
   (temperatureChange)="cambioTemperatura($event)"
