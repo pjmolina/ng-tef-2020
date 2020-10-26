@@ -2,17 +2,36 @@
 
 <h2>{{ heading }}</h2>
 
-<p>Importe: {{ dinero | currency:'EUR' }}  </p>
+<p *ngIf="dinero">Importe: {{ dinero | currency:'EUR' }}  </p>
 <div>
   Hola
   <p appMyHighlight="yellow">Esto es un parrafo de ejemplo</p>
 </div>
+
+
+<div *ngIf="obj; else noObjeto">
+  <p>Hola {{obj.name}}</p>
+</div>
+<ng-template #noObjeto>
+   No se encontro la persona.
+</ng-template>
+
 
 <div>
   <label for="search">Filtro:</label>
   <input id="search" type="text" [(ngModel)]="searchText" placeholder="escribe para filtrar" />
 </div>
 
+<ul>
+  <li *ngFor="let cityInfo of data; let i = index; let f = first; let l = last"
+      [class.even]="i % 2 === 1"
+      [class.last]="l">
+    <div  >{{ i }}. {{ cityInfo.city }}
+        ¿Es el primero? {{ f ? 'Si' : 'No'}}
+        ¿Es el ultimo? {{ l ? 'Si' : 'No'}}
+    </div>
+  </li>
+</ul>
 
 <app-weather *ngFor="let cityInfo of data | searchBy:searchText:'city'"
   [city]="cityInfo.city"

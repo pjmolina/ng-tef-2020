@@ -19,6 +19,10 @@ export class AppComponent {
   log: string[] = [];
   dinero = 12399.999;
 
+  obj = {
+    name: 'Pablo'
+  };
+
   searchText = '';
 
   data: CityInfo[] = [
