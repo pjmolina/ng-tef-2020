@@ -8,6 +8,7 @@
   <p appMyHighlight="yellow">Esto es un parrafo de ejemplo</p>
 </div>
 
+<app-place-list></app-place-list>
 
 <div *ngIf="obj; else noObjeto">
   <p>Hola {{obj.name}}</p>
@@ -33,12 +34,12 @@
   </li>
 </ul>
 
-<app-weather *ngFor="let cityInfo of data | searchBy:searchText:'city'"
+<!-- <app-weather *ngFor="let cityInfo of data | searchBy:searchText:'city'"
   [city]="cityInfo.city"
   [temperature]="cityInfo.temperature"
   (temperatureChange)="cambioTemperatura($event)"
 >
-</app-weather>
+</app-weather> -->
 
 
 

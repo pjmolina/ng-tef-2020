@@ -1,0 +1,38 @@
+<div>
+  <h3>Listado de lugares</h3>
+  <div *ngIf="!places && !error">
+    Cargando...
+  </div>
+  <table *ngIf="places">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>ZIP Code</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let place of places; let o = odd" [class.odd]="o">
+        <td>{{place.name}}</td>
+        <td>{{place.address}}</td>
+        <td>{{place.city}}</td>
+        <td>{{place.zipCode}}</td>
+        <td>{{place.image}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>{{ places.length }} lugares</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+</div>

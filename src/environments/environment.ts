@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://dev.acme.com'
+  serverUrl: 'https://openapi3.herokuapp.com',
+  getPlacesUri: '/api/places',
+  user: 'demo',
+  pass: 'demo'
 };
 
 /*
