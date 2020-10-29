@@ -14,9 +14,13 @@ export class PlaceListComponent implements OnInit {
   constructor(private placeService: PlaceService) { }
 
   ngOnInit(): void {
-    this.placeService.getPlaces()
-      .then(places => this.places = places)
-      .catch(e => this.handleError(e));
+    this.placeService.getPlaces().subscribe(
+      (places) =>  this.places = places,
+      (e) => this.handleError(e),
+      () => {
+        console.log('Complete');
+      }
+    );
   }
 
   handleError(e: any): void {

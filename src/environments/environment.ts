@@ -7,7 +7,7 @@ export const environment = {
   serverUrl: 'https://openapi3.herokuapp.com',
   getPlacesUri: '/api/places',
   user: 'demo',
-  pass: 'demo'
+  pass: 'demox'
 };
 
 /*
