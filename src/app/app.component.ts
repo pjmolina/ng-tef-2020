@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, from, fromEvent, ReplaySubject, Subject } from 'rxjs';
+import { throttleTime, buffer, map, filter, shareReplay } from 'rxjs/operators';
 import { WeatherStateService } from './services/weather-state.service';
 import { TemperatureChangeEvent } from './weather/weather.component';
 
@@ -13,7 +15,9 @@ export interface CityInfo {
   styleUrls: ['./app.component.scss'],
   providers: [ WeatherStateService ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild('b1', { static: true }) btn: ElementRef;
+
   title = 'app012zz';
   heading = 'Lema 11';
   log: string[] = [];
@@ -32,6 +36,59 @@ export class AppComponent {
     { city: 'Alicante', temperature: 25 },
     { city: 'Madrid', temperature: -5 }
   ];
+
+  ngOnInit(): void {
+    // obs frio
+    // const obs$ = from([1, 2, 3]);
+
+    // obs caliente
+    const click$ = fromEvent(this.btn.nativeElement, 'click');
+    const obs1$ = click$.pipe(
+      buffer(click$.pipe(throttleTime(1000))),
+      map(data => data.length),
+      map(x => x * 10),
+      filter(x => x > 30)
+    );
+
+    const subject = new BehaviorSubject<string>('42');
+    const obs$ = subject.pipe(shareReplay(3));
+
+    subject.next('Hola');
+
+    obs$.subscribe(
+      d => {
+        console.log('Consumidor 1:', d);
+      },
+      e => {
+        console.log('Consumidor 1 Error:', e);
+      },
+      () => {
+        console.log('Consumidor 1 Completado');
+      }
+    );
+
+    subject.next('Adios');
+
+    obs$.subscribe(
+      d => {
+        console.log('Consumidor 2:', d);
+      }
+    );
+
+
+    obs$.subscribe(
+      d => {
+        console.log('Consumidor 3:', d);
+      }
+    );
+
+    subject.next('Adios 3');
+
+
+    // subject.error('Error 404');
+    subject.complete();
+
+  }
 
   cambioTemperatura(t: TemperatureChangeEvent): void {
     // const msg = 'Cambio de temperatura en ' + t.city + ' : ' + t.temperature;
