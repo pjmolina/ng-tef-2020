@@ -4,8 +4,11 @@
 
 <nav>
   <a [routerLink]="['/']">Start</a> |
-  <a [routerLink]="['/hello']">Bienvenida</a> |
-  <a [routerLink]="['/places']">Lugares</a>
+  <a *ngIf="session.hasRole('Admin')"  [routerLink]="['/hello']">Bienvenida</a> |
+  <a  [routerLink]="['/places']">Lugares</a>
+
+  <!-- appRole="Admin" appOperation="save" -->
+
 </nav>
 
 <main>

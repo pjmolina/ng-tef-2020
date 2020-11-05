@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, from, fromEvent, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { throttleTime, buffer, map, filter, shareReplay, first, take } from 'rxjs/operators';
+import { SessionService } from './services/session.service';
 import { WeatherStateService } from './services/weather-state.service';
 import { TemperatureChangeEvent } from './weather/weather.component';
 
@@ -38,6 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   private sub1: Subscription;
+
+  constructor(public session: SessionService) {}
 
   ngOnInit(): void {
     // obs frio

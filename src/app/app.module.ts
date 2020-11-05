@@ -15,6 +15,9 @@ import { routes } from './app-routes';
 import { HelloComponent } from './hello/hello.component';
 import { PlaceDetailComponent } from './places/place-detail/place-detail.component';
 import { StartComponent } from './start/start.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RoleDirective } from './directives/role.directive';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { StartComponent } from './start/start.component';
     PlaceListComponent,
     HelloComponent,
     PlaceDetailComponent,
-    StartComponent
+    StartComponent,
+    NotFoundComponent,
+    RoleDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
