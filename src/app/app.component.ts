@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, from, fromEvent, ReplaySubject, Subject } from 'rxjs';
-import { throttleTime, buffer, map, filter, shareReplay } from 'rxjs/operators';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, from, fromEvent, ReplaySubject, Subject, Subscription } from 'rxjs';
+import { throttleTime, buffer, map, filter, shareReplay, first, take } from 'rxjs/operators';
 import { WeatherStateService } from './services/weather-state.service';
 import { TemperatureChangeEvent } from './weather/weather.component';
 
@@ -15,7 +15,7 @@ export interface CityInfo {
   styleUrls: ['./app.component.scss'],
   providers: [ WeatherStateService ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('b1', { static: true }) btn: ElementRef;
 
   title = 'app012zz';
@@ -37,6 +37,8 @@ export class AppComponent implements OnInit {
     { city: 'Madrid', temperature: -5 }
   ];
 
+  private sub1: Subscription;
+
   ngOnInit(): void {
     // obs frio
     // const obs$ = from([1, 2, 3]);
@@ -47,7 +49,7 @@ export class AppComponent implements OnInit {
       buffer(click$.pipe(throttleTime(1000))),
       map(data => data.length),
       map(x => x * 10),
-      filter(x => x > 30)
+      filter(x => x > 30),
     );
 
     const subject = new BehaviorSubject<string>('42');
@@ -55,7 +57,7 @@ export class AppComponent implements OnInit {
 
     subject.next('Hola');
 
-    obs$.subscribe(
+    this.sub1 = obs$.subscribe(
       d => {
         console.log('Consumidor 1:', d);
       },
@@ -66,6 +68,8 @@ export class AppComponent implements OnInit {
         console.log('Consumidor 1 Completado');
       }
     );
+
+
 
     subject.next('Adios');
 
@@ -88,6 +92,13 @@ export class AppComponent implements OnInit {
     // subject.error('Error 404');
     subject.complete();
 
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub1) {
+      this.sub1.unsubscribe();
+      this.sub1 = null;
+    }
   }
 
   cambioTemperatura(t: TemperatureChangeEvent): void {
