@@ -2,7 +2,23 @@
 
 <h2>{{ heading }}</h2>
 
+<nav>
+  <a [routerLink]="['/']">Start</a> |
+  <a [routerLink]="['/hello']">Bienvenida</a> |
+  <a [routerLink]="['/places']">Lugares</a>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<hr/>
+<footer>
+  &copy; Telefonica 2020.
+</footer>
+
 <button #b1>Pulsame</button>
+<!--
 
 <p *ngIf="dinero">Importe: {{ dinero | currency:'EUR' }}  </p>
 <div>
@@ -36,15 +52,6 @@
   </li>
 </ul>
 
-<!-- <app-weather *ngFor="let cityInfo of data | searchBy:searchText:'city'"
-  [city]="cityInfo.city"
-  [temperature]="cityInfo.temperature"
-  (temperatureChange)="cambioTemperatura($event)"
->
-</app-weather> -->
-
-
-
 <ul>
   <li *ngFor="let msg of log">{{ msg }}</li>
-</ul>
+</ul> -->

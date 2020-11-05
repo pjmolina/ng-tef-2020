@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Place } from 'src/app/domain/place';
 import { PlaceService } from 'src/app/services/place.service';
 
@@ -8,10 +9,14 @@ import { PlaceService } from 'src/app/services/place.service';
   styleUrls: ['./place-list.component.scss']
 })
 export class PlaceListComponent implements OnInit {
+  @Output() selected = new EventEmitter<Place>();
   places: Place[] = null;
   error: string;
 
-  constructor(private placeService: PlaceService) { }
+  constructor(
+    private placeService: PlaceService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.placeService.getPlaces().subscribe(
@@ -29,5 +34,11 @@ export class PlaceListComponent implements OnInit {
     } else {
       this.error = e.message;
     }
+  }
+
+  onSelected(place: Place): void {
+    this.selected.emit(place);
+
+    this.router.navigate(['place/' + place._id ]);
   }
 }

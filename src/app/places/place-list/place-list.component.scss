@@ -4,3 +4,10 @@
 .odd {
   background-color: #f8f8f8;
 }
+tr:hover {
+  td {
+    background-color: #c8c8c8;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,22 @@
+<div class="place-detail" *ngIf="place">
+  <div>
+    <label>Name:</label>
+    <span>{{ place.name }}</span>
+  </div>
+  <div>
+    <label>City:</label>
+    <span>{{ place.city }}</span>
+  </div>
+  <div>
+    <label>Image:</label>
+    <span>{{ place.image }}</span>
+  </div>
+  <div>
+    <label>ZIP:</label>
+    <span>{{ place.zipCode }}</span>
+  </div>
+</div>
+
+<div class="place-detail" *ngIf="!place">
+  <span>Sin información</span>
+</div>
