@@ -28,7 +28,7 @@ export class SessionService {
   }
 
   get isAuthencated(): boolean {
-    return name !== null && this.tokenJwt !== null;
+    return this.name !== null && this.tokenJwt !== null;
   }
 
   hasRole(role: string): boolean {

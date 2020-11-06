@@ -2,8 +2,7 @@ import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerR
 import { SessionService } from '../services/session.service';
 
 @Directive({
-  selector: '[appRole]',
-  providers: [ ]   // TemplateRef   TODO
+  selector: '[appRole]'
 })
 export class RoleDirective implements OnChanges {
   @Input() appRole: string;
