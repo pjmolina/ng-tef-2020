@@ -1,22 +1,31 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
 import { SessionService } from '../services/session.service';
 
 @Directive({
   selector: '[appRole]',
-  providers: [  ]   // TemplateRef   TODO
+  providers: [ ]   // TemplateRef   TODO
 })
-export class RoleDirective {
+export class RoleDirective implements OnChanges {
   @Input() appRole: string;
 
   constructor(
-    templateRef: TemplateRef<any>,
-    viewContainer: ViewContainerRef,
-    session: SessionService
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef,
+    private session: SessionService
   ) {
-    if (session.hasRole(this.appRole)) {
-      viewContainer.createEmbeddedView(templateRef);
+    this.session.roles$.subscribe(roles => {
+      this.refresh();
+    });
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.refresh();
+  }
+
+  refresh(): void {
+    if (this.session.hasRole(this.appRole)) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
-        viewContainer.clear();
+      this.viewContainer.clear();
     }
   }
 
