@@ -151,6 +151,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "app0"
+    }
+  },
+  "defaultProject": "app0",
+  "cli": {
+    "analytics": false
+  }
 }
