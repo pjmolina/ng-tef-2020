@@ -5,7 +5,8 @@
 <nav>
   <a [routerLink]="['/']">Start</a> |
   <a *ngIf="session.hasRole('Admin')"  [routerLink]="['/hello']">Bienvenida</a> |
-  <a *appRole="'Admin'" [routerLink]="['/places']">Lugares</a>
+  <a *appRole="'Admin'" [routerLink]="['/places']">Lugares</a> |
+  <a [routerLink]="['tienda']">Tienda</a> |
 
   <!-- appOperation="save" -->
 

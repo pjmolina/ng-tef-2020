@@ -22,6 +22,7 @@ export const routes: Routes = [
       { path: 'c', component: PlaceListComponent },
     ]
   },
+  { path: 'tienda', loadChildren: () => import('./tienda/tienda.module').then(m => m.TiendaModule) },
   { path: '**', component: NotFoundComponent }
 ];
 

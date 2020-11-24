@@ -6,4 +6,14 @@
 
   <app-place-detail [id]="currentPlaceId"></app-place-detail>
 
+
+  <ul>
+    <li *ngFor="let hero of heroes"
+        (click)="selectedHero(hero)"
+        [@heroSelected]="toState(hero)"
+        >
+      {{ hero.name }}   {{ hero.selected ? 'Si': 'No' }}
+    </li>
+  </ul>
+
 </div>

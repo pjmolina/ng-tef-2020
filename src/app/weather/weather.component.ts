@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy,
+  ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { LoggerService } from '../services/logger.service';
 import { WeatherStateService } from '../services/weather-state.service';
 
@@ -11,7 +12,8 @@ export interface TemperatureChangeEvent {
   selector: 'app-weather',
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.scss'],
-  providers: [  ]
+  providers: [  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherComponent implements OnInit, OnChanges, OnDestroy {
   @Input() city: string;
@@ -31,7 +33,8 @@ export class WeatherComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private logger: LoggerService,
-    private stateService: WeatherStateService
+    private stateService: WeatherStateService,
+    private cd: ChangeDetectorRef
     ) {
 
     this.logger.log('1 constructor');
@@ -64,6 +67,7 @@ export class WeatherComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       this.imagen = 'https://www.flaticon.es/svg/static/icons/svg/890/890347.svg';
     }
+    this.cd.markForCheck();
   }
 
   subirTemperatura(): void {
